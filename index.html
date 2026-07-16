@@ -518,7 +518,9 @@ function readData() {
       const day = parseInt(b.replace(/[^0-9]/g, ''));
       if (isNaN(day)) continue;
 
-      const year = currentMonth >= 7 ? 2025 : 2026;
+      const endYear = parseInt(document.getElementById('endYear').value) || new Date().getFullYear();
+      const endMonth = parseInt(document.getElementById('endMonth').value) || (new Date().getMonth() + 1);
+      const year = currentMonth <= endMonth ? endYear : endYear - 1;
       const dt = new Date(year, currentMonth - 1, day);
 
       if (dt < range.start || dt > range.end) continue;
